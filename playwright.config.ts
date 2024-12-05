@@ -96,24 +96,6 @@ export default defineConfig({
       },
     },
     {
-      name: `Firefox`,
-      use: {
-        browserName: `firefox`,
-        channel: `chrome`,
-        baseURL: testConfig[ENV],
-        headless: true,
-        viewport: { width: 1500, height: 730 },
-        ignoreHTTPSErrors: true,
-        acceptDownloads: true,
-        screenshot: `only-on-failure`,
-        video: `retain-on-failure`,
-        trace: `retain-on-failure`,
-        launchOptions: {
-          slowMo: 0
-        }
-      },
-    },
-    {
       name: `Edge`,
       use: {
         browserName: `chromium`,

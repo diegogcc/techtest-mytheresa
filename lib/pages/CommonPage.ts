@@ -11,11 +11,13 @@ export class CommonPage {
     readonly CLOTHING_PAGE_NAV_BUTTON: Locator
     readonly SHOPPING_PAGE_NAV_BUTTON: Locator
     readonly ABOUT_PAGE_NAV_BUTTON: Locator
+    consoleErrors: Array<string>
 
     constructor(page: Page, context: BrowserContext) {
         this.page = page
         this.context = context
         browserActions = new BrowserActions(this.page, this.context)
+        this.initializeErrorListener()
 
         this.HOME_PAGE_NAV_BUTTON = this.page.locator('//nav/a[contains(., "Home")]')
         this.ACCOUNT_PAGE_NAV_BUTTON = this.page.locator('//nav/a[contains(., "Account")]')
@@ -25,34 +27,52 @@ export class CommonPage {
     }
 
     async navigateToHomePage(): Promise<void> {
+        this.clearConsoleErrors()
         await this.HOME_PAGE_NAV_BUTTON.click()
     }
 
     async navigateToAccountPage(): Promise<void> {
+        this.clearConsoleErrors()
         await this.ACCOUNT_PAGE_NAV_BUTTON.click()
+        await this.page.waitForURL('**/login.html')
     }
 
     async navigateToClothingPage(): Promise<void> {
+        this.clearConsoleErrors()
         await this.CLOTHING_PAGE_NAV_BUTTON.click()
+        await this.page.waitForURL('**/products.html')
     }
 
     async navigateToShoppingPage(): Promise<void> {
+        this.clearConsoleErrors()
         await this.SHOPPING_PAGE_NAV_BUTTON.click()
+        await this.page.waitForURL('**/cart.html')
     }
 
     async navigateToAboutPage(): Promise<void> {
+        this.clearConsoleErrors()
         await this.ABOUT_PAGE_NAV_BUTTON.click()
+        await this.page.waitForURL('**/about.html')
     }
 
-    async getConsoleErrors(): Promise<Array<string>> {
-        let consoleMessages: Array<string> = [];
+    getConsoleErrors(): Array<string> {
+        return this.consoleErrors
+    }
+
+    clearConsoleErrors(): void {
+        this.consoleErrors = []
+    }
+
+    initializeErrorListener() {
         this.page.on('console', msg => {
             if (msg.type() === 'error') {
-                consoleMessages.push(msg.text())
-                console.log(`Error text caught: "${msg.text()}"`);
+                this.consoleErrors.push(msg.text())
             }
-        });
-        return consoleMessages
+        })
+
+        this.page.on('pageerror', err => {
+            this.consoleErrors.push(err.message)
+        })
     }
 
 }
