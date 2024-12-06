@@ -17,6 +17,7 @@ export class CommonPage {
         this.page = page
         this.context = context
         browserActions = new BrowserActions(this.page, this.context)
+        this.initializeErrorListener()
 
         this.HOME_PAGE_NAV_BUTTON = this.page.locator('//nav/a[contains(., "Home")]')
         this.ACCOUNT_PAGE_NAV_BUTTON = this.page.locator('//nav/a[contains(., "Account")]')

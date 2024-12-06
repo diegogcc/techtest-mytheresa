@@ -3,7 +3,6 @@ import { test } from "../lib/utilities/BaseTest"
 
 
 test.beforeEach('', async ({ browserActions, commonPage }) => {
-    commonPage.initializeErrorListener()
     await browserActions.navigateToHomeURL()
 })
 
