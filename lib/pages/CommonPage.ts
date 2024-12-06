@@ -11,45 +11,44 @@ export class CommonPage {
     readonly CLOTHING_PAGE_NAV_BUTTON: Locator
     readonly SHOPPING_PAGE_NAV_BUTTON: Locator
     readonly ABOUT_PAGE_NAV_BUTTON: Locator
-    consoleErrors: Array<string>
+    consoleErrors: Array<string> = []
 
     constructor(page: Page, context: BrowserContext) {
         this.page = page
         this.context = context
         browserActions = new BrowserActions(this.page, this.context)
-        this.initializeErrorListener()
 
         this.HOME_PAGE_NAV_BUTTON = this.page.locator('//nav/a[contains(., "Home")]')
         this.ACCOUNT_PAGE_NAV_BUTTON = this.page.locator('//nav/a[contains(., "Account")]')
         this.CLOTHING_PAGE_NAV_BUTTON = this.page.locator('//nav/a[contains(., "Clothing")]')
-        this.SHOPPING_PAGE_NAV_BUTTON = this.page.locator('//nav/a[contains(., "Account")]')
+        this.SHOPPING_PAGE_NAV_BUTTON = this.page.locator('//nav/a[contains(., "Shopping bag")]')
         this.ABOUT_PAGE_NAV_BUTTON = this.page.locator('//nav/a[contains(., "About")]')
     }
 
-    async navigateToHomePage(): Promise<void> {
+    async clickOnHomeButton(): Promise<void> {
         this.clearConsoleErrors()
         await this.HOME_PAGE_NAV_BUTTON.click()
     }
 
-    async navigateToAccountPage(): Promise<void> {
+    async clickOnAccountButton(): Promise<void> {
         this.clearConsoleErrors()
         await this.ACCOUNT_PAGE_NAV_BUTTON.click()
         await this.page.waitForURL('**/login.html')
     }
 
-    async navigateToClothingPage(): Promise<void> {
+    async clickOnClothingButton(): Promise<void> {
         this.clearConsoleErrors()
         await this.CLOTHING_PAGE_NAV_BUTTON.click()
         await this.page.waitForURL('**/products.html')
     }
 
-    async navigateToShoppingPage(): Promise<void> {
+    async clickOnShoppingButton(): Promise<void> {
         this.clearConsoleErrors()
         await this.SHOPPING_PAGE_NAV_BUTTON.click()
         await this.page.waitForURL('**/cart.html')
     }
 
-    async navigateToAboutPage(): Promise<void> {
+    async clickOnAboutButton(): Promise<void> {
         this.clearConsoleErrors()
         await this.ABOUT_PAGE_NAV_BUTTON.click()
         await this.page.waitForURL('**/about.html')

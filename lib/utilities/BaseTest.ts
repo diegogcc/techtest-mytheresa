@@ -5,6 +5,7 @@ import { AccountPage } from "./../pages/AccountPage"
 import { ClothingPage } from "./../pages/ClothingPage"
 import { HomePage } from "./../pages/HomePage"
 import { ShoppingPage } from "./../pages/ShoppingPage"
+import { CommonPage } from "../pages/CommonPage";
 
 export const test = baseTest.extend<{
     page: Page
@@ -14,6 +15,7 @@ export const test = baseTest.extend<{
     clothingPage: ClothingPage
     homePage: HomePage
     shoppingPage: ShoppingPage
+    commonPage: CommonPage
 }>({
     browserActions: async ({ page, context }, use) => {
         await use(new BrowserActions(page, context))
@@ -33,4 +35,7 @@ export const test = baseTest.extend<{
     shoppingPage: async ({ page, context }, use) => {
         await use(new ShoppingPage(page, context))
     },
+    commonPage: async ({ page, context }, use) => {
+        await use(new CommonPage(page, context))
+    }
 })

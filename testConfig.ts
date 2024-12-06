@@ -3,5 +3,5 @@ export const testConfig = {
     staging: `https://staging-env`,
     prod: `https://pocketaces2.github.io`,
     waitForElement: 60000,
-    ENV: `staging`
+    ENV: `prod`
 }

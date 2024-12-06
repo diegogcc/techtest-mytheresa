@@ -1,31 +1,33 @@
 import { expect } from "@playwright/test"
 import { test } from "../lib/utilities/BaseTest"
 
-test('Test Console Error: Home', async ({ page, browserActions, homePage }) => {
-    await browserActions.navigateToURL()
+
+test.beforeEach('', async ({ browserActions, commonPage }) => {
+    commonPage.initializeErrorListener()
+    await browserActions.navigateToHomeURL()
+})
+
+test('Test Console Error: Home', async ({ homePage }) => {
     expect(homePage.getConsoleErrors()).toHaveLength(0)
 })
 
 test('Test Console Error: Account', async ({ page, browserActions, accountPage }) => {
-    await browserActions.navigateToURL()
-    await accountPage.navigateToAccountPage()
+    await accountPage.clickOnAccountButton()
     expect(accountPage.getConsoleErrors()).toHaveLength(0)
 })
 
 test('Test Console Error: Clothing', async ({ page, browserActions, clothingPage }) => {
-    await browserActions.navigateToURL()
-    await clothingPage.navigateToClothingPage()
+    await clothingPage.clickOnClothingButton()
     expect(clothingPage.getConsoleErrors()).toHaveLength(0)
 })
 
 test('Test Console Error: Shopping', async ({ page, browserActions, shoppingPage }) => {
-    await browserActions.navigateToURL()
-    await shoppingPage.navigateToShoppingPage()
+    await shoppingPage.clickOnShoppingButton()
     expect(shoppingPage.getConsoleErrors()).toHaveLength(0)
 })
 
+// This test is expected to fail.
 test('Test Console Error: About', async ({ page, browserActions, aboutPage }) => {
-    await browserActions.navigateToURL()
-    await aboutPage.navigateToAboutPage()
+    await aboutPage.clickOnAboutButton()
     expect(aboutPage.getConsoleErrors()).toHaveLength(0) // This will fail as expected.
 })
