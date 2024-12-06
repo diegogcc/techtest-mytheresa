@@ -1,7 +1,6 @@
 import { expect } from "@playwright/test"
 import { test } from "../lib/utilities/BaseTest"
 
-
 test.beforeEach('', async ({ browserActions, commonPage }) => {
     await browserActions.navigateToHomeURL()
 })
