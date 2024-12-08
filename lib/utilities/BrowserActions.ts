@@ -34,7 +34,6 @@ export class BrowserActions {
             return false;
         }
         const s = response.status()
-        console.log(s)
         if (s == 200 || (s >= 300 && s < 400)) {
             return true;
         } else if (s >= 400 && s < 500) { return false; }

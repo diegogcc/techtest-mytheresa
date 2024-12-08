@@ -11,5 +11,8 @@
     "@playwright/test": "^1.49.0",
     "@types/node": "^22.10.0",
     "@typescript-eslint/eslint-plugin": "8.16.0"
+  },
+  "dependencies": {
+    "csv-writer": "^1.6.0"
   }
 }
