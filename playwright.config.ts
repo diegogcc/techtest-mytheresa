@@ -96,24 +96,6 @@ export default defineConfig({
       },
     },
     {
-      name: `Edge`,
-      use: {
-        browserName: `chromium`,
-        channel: `msedge`,
-        baseURL: testConfig[ENV],
-        headless: false,
-        viewport: { width: 1500, height: 730 },
-        ignoreHTTPSErrors: true,
-        acceptDownloads: true,
-        screenshot: `only-on-failure`,
-        video: `retain-on-failure`,
-        trace: `retain-on-failure`,
-        launchOptions: {
-          slowMo: 0
-        }
-      },
-    },
-    {
       name: `WebKit`,
       use: {
         browserName: `webkit`,

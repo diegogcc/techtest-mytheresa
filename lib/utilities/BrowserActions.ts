@@ -10,7 +10,7 @@ export class BrowserActions {
     }
 
     async navigateToHomeURL(): Promise<Response | null> {
-        return await this.page.goto("/fashionhub");
+        return await this.page.goto("/fashionhub/");
     }
 
     async navigateToAboutURL(): Promise<Response | null> {
