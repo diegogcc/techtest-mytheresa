@@ -1,13 +1,14 @@
 import { defineConfig, devices } from '@playwright/test';
 import { testConfig } from './testConfig';
 
-const ENV = process.env.npm_config_ENV;
+let ENV = process.env.npm_config_ENV;
 
 if (!ENV || ![`local`, `staging`, `prod`].includes(ENV)) {
   console.log(`Invalid environment value after command "--ENV=local|staging|prod"`);
-  process.exit();
+  console.log(`Trying default ENV value = ${testConfig.ENV}`)
+  ENV = testConfig.ENV
 }
-
+console.log(`Running tests in ENV = ${ENV}`)
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv

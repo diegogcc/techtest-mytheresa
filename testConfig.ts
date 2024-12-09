@@ -5,5 +5,5 @@ export const testConfig = {
     waitForElement: 60000,
     repoUrl: `https://github.com/appwrite/appwrite/pulls`,
     csvReportPath: `./test-results/prRepot.csv`,
-    ENV: `prod`
+    ENV: `local`
 }
